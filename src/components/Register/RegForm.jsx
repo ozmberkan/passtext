@@ -11,8 +11,13 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { register } from "~/services/authService";
+import { toast } from "sonner";
+import { useAuthStore } from "~/store/useAuthStore";
 
 const RegForm = () => {
+  const setUser = useAuthStore((state) => state.setUser);
+
   const schema = Yup.object().shape({
     email: Yup.string()
       .email("Geçersiz e-posta adresi")
@@ -20,7 +25,17 @@ const RegForm = () => {
   });
 
   const handleSubmit = (values) => {
-    console.log(values);
+    register(values)
+      .then((res) => {
+        toast.success(
+          "Kayıt Başarılı! Parolanızı dikkatlice güvenli bir yerde saklayınız. Sizler için panoya kopyaladık."
+        );
+        window.navigator.clipboard.writeText(res.data.data.password);
+        setUser(res.data.data);
+      })
+      .catch((err) => {
+        toast.error("Kayıt başarısız! Lütfen tekrar deneyin." + err.message);
+      });
   };
 
   return (

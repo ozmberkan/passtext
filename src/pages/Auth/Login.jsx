@@ -2,13 +2,16 @@ import { TbFingerprint, TbLock, TbPassword } from "react-icons/tb";
 import AlertMessage from "~/components/Login/AlertMessage";
 import Form from "~/components/Login/Form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import { useAuthStore } from "~/store/useAuthStore";
 
 const Login = () => {
+  const user = useAuthStore((state) => state.user);
+
   return (
     <div className="w-full min-h-[700px] relative flex flex-col justify-start items-center mt-4">
       <h1 className="text-4xl font-bold mb-4 flex justify-center items-center flex-col tracking-tighter">
         <TbFingerprint className="animate-pulse text-zinc-500" />
-        Passtext
+        Passtext - {user?.email ?? ""}
       </h1>
       <Tabs
         defaultValue="login"
