@@ -14,7 +14,7 @@ const Menu = () => {
   const user = useAuthStore((state) => state.user);
   const loaded = useAuthStore((state) => state.loaded);
   return (
-    <div className="bg-neutral-100 min-w-[200px] flex flex-col items-start justify-start  rounded-md p-3 h-full border">
+    <div className="bg-neutral-50 min-w-[200px] flex flex-col items-start justify-start  rounded-md p-3 h-full border">
       <h1 className="text-2xl px-2 py-1.5 font-bold flex gap-1 justify-center items-center  tracking-tighter">
         <TbFingerprint size={18} className="animate-pulse text-neutral-700" />
         <span className="text-sm">Passtext</span>
