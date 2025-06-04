@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { TbAlertCircle, TbLoader2 } from "react-icons/tb";
 import Menu from "~/components/Menu/Menu";
 import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
@@ -19,11 +20,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "~/components/ui/dialog";
-import { Separator } from "~/components/ui/separator";
 import { Label } from "~/components/ui/label";
+import { Separator } from "~/components/ui/separator";
 import Container from "~/containers/Container";
 import { useAuthStore } from "~/store/useAuthStore";
-import { useState } from "react";
 
 const Profile = () => {
   let pageTitle = "Profilim";

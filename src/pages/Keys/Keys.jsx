@@ -1,4 +1,3 @@
-import { Copy } from "lucide-react";
 import { useState } from "react";
 import { TbEye, TbEyeClosed, TbLoader2 } from "react-icons/tb";
 import Menu from "~/components/Menu/Menu";

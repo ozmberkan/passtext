@@ -1,14 +1,14 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Toaster } from "sonner";
 import NotFound from "./pages/404/NotFound";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Home from "./pages/Home/Home";
-import { useAuthStore } from "./store/useAuthStore";
-import { Toaster } from "sonner";
-import { useEffect, useState } from "react";
-import { me } from "./services/authService";
-import Profile from "./pages/Profile/Profile";
 import Keys from "./pages/Keys/Keys";
+import Profile from "./pages/Profile/Profile";
+import { me } from "./services/authService";
+import { useAuthStore } from "./store/useAuthStore";
 
 const App = () => {
   const user = useAuthStore((state) => state.user);
