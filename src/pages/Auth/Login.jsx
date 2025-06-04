@@ -16,7 +16,7 @@ const Login = () => {
       >
         <TabsList className="flex justify-center items-center ">
           <TabsTrigger value="login">Giriş Yap</TabsTrigger>
-          <TabsTrigger value="message">Dikkat Metni</TabsTrigger>
+          <TabsTrigger value="message">Başlamadan Önce</TabsTrigger>
         </TabsList>
         <TabsContent value="login" className="w-full">
           <Form />

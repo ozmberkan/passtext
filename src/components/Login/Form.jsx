@@ -52,8 +52,7 @@ const Form = () => {
       <CardHeader>
         <CardTitle>Sisteme giriş yap</CardTitle>
         <CardDescription>
-          Sisteme erişmek için lütfen e-posta adresinizi girin. Erişimden önce
-          dikkat metnini dikkate alınız.
+          Sisteme erişmek için lütfen e-posta adresinizi girin. <br />
           <Link to="/kayit-ol" className="text-black hover:underline">
             Hesabınız yok mu ?
           </Link>

@@ -14,6 +14,7 @@ import {
 import { register } from "~/services/authService";
 import { toast } from "sonner";
 import { useAuthStore } from "~/store/useAuthStore";
+import { Separator } from "../ui/separator";
 
 const RegForm = () => {
   const setUser = useAuthStore((state) => state.setUser);
@@ -43,8 +44,8 @@ const RegForm = () => {
       <CardHeader>
         <CardTitle>Sisteme kayıt ol</CardTitle>
         <CardDescription>
-          Sisteme erişmek için lütfen e-posta adresinizi girin. Erişimden önce
-          dikkat metnini dikkate alınız.
+          Sisteme erişmek için lütfen e-posta adresinizi girin.
+          <br />
           <Link to="/giris-yap" className="text-black hover:underline">
             Hesabınız var mı ?
           </Link>

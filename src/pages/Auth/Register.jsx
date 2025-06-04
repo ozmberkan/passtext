@@ -11,12 +11,12 @@ const Register = () => {
         Passtext
       </h1>
       <Tabs
-        defaultValue="register"
+        defaultValue="message"
         className="w-[450px] flex justify-center items-center"
       >
         <TabsList className="flex justify-center items-center ">
+          <TabsTrigger value="message">Başlamadan Önce</TabsTrigger>
           <TabsTrigger value="register">Kayıt Ol</TabsTrigger>
-          <TabsTrigger value="message">Dikkat Metni</TabsTrigger>
         </TabsList>
         <TabsContent value="register" className="w-full">
           <RegForm />

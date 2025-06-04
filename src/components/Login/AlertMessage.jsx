@@ -12,26 +12,26 @@ const AlertMessage = () => {
   return (
     <Card className="w-full border-none shadow-none">
       <CardHeader>
-        <CardTitle>Dikkat</CardTitle>
+        <CardTitle>Hoş geldin</CardTitle>
         <CardDescription>
           Sistemi kullanmaya başlamadan önce lütfen bu bilgilendirme metnini
-          dikkatle okuyunuz.
+          dikkatle oku.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="text-sm text-muted-foreground">
-          Öncelikle sistemimize hoş geldiniz. Bu platform, kullanıcıların
-          parolalarını güvenli ve düzenli bir şekilde saklayabilmeleri amacıyla
-          geliştirilmiştir. Güvenlik standartlarımız gereği, kayıt esnasında
-          kullanıcıların manuel olarak parola belirlemeleri yerine, sistem
-          tarafından otomatik olarak oluşturulan ve uçtan uca şifrelenen bir
-          erişim anahtarı kullanılmaktadır.
+          Bu platform, kullanıcıların parolalarını güvenli ve düzenli bir
+          şekilde saklayabilmeleri amacıyla geliştirilmiştir. Güvenlik
+          standartlarımız gereği, kayıt esnasında kullanıcıların manuel olarak
+          parola belirlemeleri yerine, sistem tarafından otomatik olarak
+          oluşturulan ve uçtan uca şifrelenen bir erişim anahtarı
+          kullanılmaktadır.
           <Alert variant="destructive" className="mt-4">
             <TbAlertCircle />
             <AlertTitle>Önerilmez</AlertTitle>
             <AlertDescription>
-              Dilerseniz parolanızı manuel olarak profilden belirleyebilirsiniz,
-              ancak bu işlem önerilmez.
+              Dilerseniz parolanızı manuel olarak profilinizden
+              belirleyebilirsiniz, ancak bu işlem önerilmez.
             </AlertDescription>
           </Alert>
         </div>
