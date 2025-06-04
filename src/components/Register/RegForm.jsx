@@ -62,13 +62,13 @@ const RegForm = () => {
             <Form>
               <div>
                 <Label className="text-sm font-medium text-muted-foreground">
-                  E-posta adresi
+                  E-posta
                 </Label>
                 <Field
                   name="email"
                   type="email"
                   placeholder="E-posta adresinizi girin"
-                  className={`w-full px-2 py-1 border rounded-md ${
+                  className={`w-full text-sm px-2 py-1 border rounded-md ${
                     errors.email ? "border-red-500" : "border-neutral-200"
                   }`}
                 />

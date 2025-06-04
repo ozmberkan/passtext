@@ -1,7 +1,11 @@
-import { TbFingerprint, TbLock, TbPassword } from "react-icons/tb";
-import AlertMessage from "~/components/Login/AlertMessage";
+import { TbFingerprint, TbLoader2, TbLock, TbPassword } from "react-icons/tb";
 import Form from "~/components/Login/Form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "~/components/ui/hover-card";
 
 const Login = () => {
   return (
@@ -16,13 +20,13 @@ const Login = () => {
       >
         <TabsList className="flex justify-center items-center ">
           <TabsTrigger value="login">Giriş Yap</TabsTrigger>
-          <TabsTrigger value="message">Başlamadan Önce</TabsTrigger>
+          <TabsTrigger disabled value="forgot">
+            <TbLoader2 className="animate-spin" />
+            Şifremi Unuttum
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="login" className="w-full">
           <Form />
-        </TabsContent>
-        <TabsContent value="message">
-          <AlertMessage />
         </TabsContent>
       </Tabs>
       <TbLock

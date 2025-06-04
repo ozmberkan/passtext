@@ -52,7 +52,7 @@ const Form = () => {
       <CardHeader>
         <CardTitle>Sisteme giriş yap</CardTitle>
         <CardDescription>
-          Sisteme erişmek için lütfen e-posta adresinizi girin. <br />
+          Sisteme erişmek için lütfen e-posta adresinizi ve parolanızı giriniz.{" "}
           <Link to="/kayit-ol" className="text-black hover:underline">
             Hesabınız yok mu ?
           </Link>
@@ -62,14 +62,14 @@ const Form = () => {
         <form onSubmit={handleSubmit} className="flex flex-col gap-1">
           <div>
             <label className="text-sm font-medium text-muted-foreground">
-              E-posta adresi
+              E-posta
             </label>
             <input
               name="email"
               onChange={handleChange}
               placeholder="ör: m@mail.com"
               type="email"
-              className={`w-full px-2 py-1 border placeholder:text-sm rounded-md border-neutral-200`}
+              className={`w-full text-sm px-2 py-1 border placeholder:text-sm rounded-md border-neutral-200`}
             />
           </div>
           <div>
@@ -81,7 +81,7 @@ const Form = () => {
               onChange={handleChange}
               type="password"
               placeholder="******"
-              className={`w-full px-2 py-1 border placeholder:text-sm rounded-md border-neutral-200`}
+              className={`w-full text-sm px-2 py-1 border placeholder:text-sm rounded-md border-neutral-200`}
             />
           </div>
           <Button className="mt-2" type="submit">
