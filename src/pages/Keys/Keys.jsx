@@ -2,20 +2,25 @@ import Menu from "~/components/Menu/Menu";
 import {
   Breadcrumb,
   BreadcrumbItem,
+  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "~/components/ui/breadcrumb";
 import Container from "~/containers/Container";
 
-const Home = () => {
-  let pageTitle = "Anasayfa";
+const Keys = () => {
+  let pageTitle = "Anahtarlarım";
 
   return (
     <Container>
       <Menu />
       <Breadcrumb>
         <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Anasayfa</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbPage>{pageTitle}</BreadcrumbPage>
           </BreadcrumbItem>
@@ -25,4 +30,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Keys;

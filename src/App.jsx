@@ -7,6 +7,8 @@ import { useAuthStore } from "./store/useAuthStore";
 import { Toaster } from "sonner";
 import { useEffect, useState } from "react";
 import { me } from "./services/authService";
+import Profile from "./pages/Profile/Profile";
+import Keys from "./pages/Keys/Keys";
 
 const App = () => {
   const user = useAuthStore((state) => state.user);
@@ -44,6 +46,14 @@ const App = () => {
         <Route
           path="/"
           element={token ? <Home /> : <Navigate to="/giris-yap" />}
+        />
+        <Route
+          path="/profile"
+          element={token ? <Profile /> : <Navigate to="/giris-yap" />}
+        />
+        <Route
+          path="/keys"
+          element={token ? <Keys /> : <Navigate to="/giris-yap" />}
         />
         {/* Auth */}
         <Route path="/giris-yap" element={<Login />} />
