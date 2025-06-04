@@ -17,9 +17,8 @@ const App = () => {
     if (!user && token) {
       me()
         .then((res) => {
-          const { email, token } = res.data.data;
+          const { email } = res.data.data;
           setUser({ email });
-          localStorage.setItem("token", token);
         })
         .catch((err) => {
           console.error("Error fetching user data:", err);

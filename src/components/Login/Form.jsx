@@ -39,8 +39,9 @@ const Form = () => {
         toast.success("Giriş Başarılı!");
         localStorage.setItem("token", res.data.data.token);
         setUser(res.data.data);
+
         setTimeout(() => {
-          navigate("/");
+          window.location.href = "/";
         }, 2000);
       });
     }
