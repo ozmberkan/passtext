@@ -21,16 +21,16 @@ const AlertMessage = () => {
       <CardContent>
         <div className="text-sm text-muted-foreground">
           Öncelikle sistemimize hoş geldiniz. Bu platform, kullanıcıların
-          şifrelerini güvenli ve düzenli bir şekilde saklayabilmeleri amacıyla
+          parolalarını güvenli ve düzenli bir şekilde saklayabilmeleri amacıyla
           geliştirilmiştir. Güvenlik standartlarımız gereği, kayıt esnasında
-          kullanıcıların manuel olarak şifre belirlemeleri yerine, sistem
+          kullanıcıların manuel olarak parola belirlemeleri yerine, sistem
           tarafından otomatik olarak oluşturulan ve uçtan uca şifrelenen bir
           erişim anahtarı kullanılmaktadır.
           <Alert variant="destructive" className="mt-4">
             <TbAlertCircle />
             <AlertTitle>Önerilmez</AlertTitle>
             <AlertDescription>
-              Dilerseniz şifrenizi manuel olarak profilden belirleyebilirsiniz,
+              Dilerseniz parolanızı manuel olarak profilden belirleyebilirsiniz,
               ancak bu işlem önerilmez.
             </AlertDescription>
           </Alert>

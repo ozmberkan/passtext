@@ -78,9 +78,9 @@ const Profile = () => {
                         Parolayı Değiştirmek İstediğine Emin misin?
                       </DialogTitle>
                       <DialogDescription>
-                        Kayıt esnasında oluşturulan şifreler güvenliğiniz için
+                        Kayıt esnasında oluşturulan parolalar güvenliğiniz için
                         uçtan uca şifrelenmiş olarak saklanmaktadır. Bu nedenle,
-                        şifrelerinizi değiştirmemenizi öneriyoruz.
+                        parolalarınızı değiştirmemenizi öneriyoruz.
                       </DialogDescription>
                       <div className="flex flex-col gap-3">
                         <Separator className="my-1" />
@@ -112,10 +112,10 @@ const Profile = () => {
               <TbAlertCircle />
               <AlertTitle>Lütfen dikkat!</AlertTitle>
               <AlertDescription>
-                Kayıt esnasında oluşturulan şifreler, güvenliğiniz için uçtan
-                uca şifrelenmiş olarak saklanmaktadır. Bu nedenle, şifrelerinizi
-                değiştirmeminizi öneriyoruz. Şifrelerinizi güvenli bir yerde
-                saklamanız önemlidir.
+                Kayıt esnasında oluşturulan parolalar, güvenliğiniz için uçtan
+                uca şifrelenmiş olarak saklanmaktadır. Bu nedenle,
+                parolalarınızı değiştirmeminizi öneriyoruz. parolalarınızı
+                güvenli bir yerde saklamanız önemlidir.
               </AlertDescription>
             </Alert>
 
