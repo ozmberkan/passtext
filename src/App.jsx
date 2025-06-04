@@ -11,10 +11,14 @@ import { me } from "./services/authService";
 const App = () => {
   const user = useAuthStore((state) => state.user);
   const setUser = useAuthStore((state) => state.setUser);
+  const loaded = useAuthStore((state) => state.loaded);
+  const setLoaded = useAuthStore((state) => state.setLoaded);
+  //
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   useEffect(() => {
     if (!user && token) {
+      setLoaded(false);
       me()
         .then((res) => {
           const { email } = res.data.data;
@@ -23,6 +27,9 @@ const App = () => {
         .catch((err) => {
           console.error("Error fetching user data:", err);
           localStorage.removeItem("token");
+        })
+        .finally(() => {
+          setLoaded(true);
         });
     }
   }, [user]);
