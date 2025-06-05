@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
 import NotFound from "./pages/404/NotFound";
@@ -15,47 +15,47 @@ const App = () => {
   const setUser = useAuthStore((state) => state.setUser);
   const loaded = useAuthStore((state) => state.loaded);
   const setLoaded = useAuthStore((state) => state.setLoaded);
-  //
-  const [token, setToken] = useState(localStorage.getItem("token"));
 
   useEffect(() => {
-    if (!user && token) {
+    if (!user) {
       setLoaded(false);
       me()
         .then((res) => {
-          const { email } = res.data.data;
-          setUser({ email });
+          const { email, id } = res.data.data;
+          setUser({ email, id });
         })
-        .catch((err) => {
-          console.error("Error fetching user data:", err);
-          localStorage.removeItem("token");
+        .catch(() => {
+          setUser(null);
         })
         .finally(() => {
           setLoaded(true);
         });
     }
-  }, [user]);
+  }, []);
+
+  if (!loaded) return <div>Yükleniyor...</div>;
 
   return (
     <BrowserRouter>
       <Toaster richColors />
       <Routes>
-        {/* Not Found */}
         <Route path="*" element={<NotFound />} />
-        {/* Private Route */}
+
+        {/* PRIVATE ROUTES */}
         <Route
           path="/"
-          element={token ? <Home /> : <Navigate to="/giris-yap" />}
+          element={user ? <Home /> : <Navigate to="/giris-yap" />}
         />
         <Route
           path="/profile"
-          element={token ? <Profile /> : <Navigate to="/giris-yap" />}
+          element={user ? <Profile /> : <Navigate to="/giris-yap" />}
         />
         <Route
           path="/keys"
-          element={token ? <Keys /> : <Navigate to="/giris-yap" />}
+          element={user ? <Keys /> : <Navigate to="/giris-yap" />}
         />
-        {/* Auth */}
+
+        {/* AUTH ROUTES */}
         <Route path="/giris-yap" element={<Login />} />
         <Route path="/kayit-ol" element={<Register />} />
       </Routes>

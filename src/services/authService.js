@@ -9,7 +9,7 @@ export const register = async (values) => {
 };
 
 export const logout = async () => {
-  return await api.get("api/auth/logout");
+  return await api.post("api/auth/logout");
 };
 
 export const me = async () => {

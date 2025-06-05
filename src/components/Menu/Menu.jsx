@@ -1,6 +1,7 @@
 import { TbFingerprint, TbHome, TbKey, TbLogout, TbUser } from "react-icons/tb";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Separator } from "~/components/ui/separator";
+import { logout } from "~/services/authService";
 import { useAuthStore } from "~/store/useAuthStore";
 
 const Menu = () => {
@@ -9,6 +10,9 @@ const Menu = () => {
   console.log(pathname);
 
   const user = useAuthStore((state) => state.user);
+
+  const setUser = useAuthStore((state) => state.setUser);
+
   return (
     <div className="bg-white min-w-[250px] flex flex-col items-start justify-start  rounded-md p-3 h-full border">
       <h1 className="text-2xl px-2 py-1.5 font-bold flex gap-1 justify-center items-center  tracking-tighter">
@@ -62,8 +66,9 @@ const Menu = () => {
           <button
             className="flex  items-center border gap-2 text-muted-foreground hover:bg-neutral-50 w-full px-2 py-1.5 rounded-md transition-colors duration-200"
             onClick={() => {
-              localStorage.removeItem("token");
-              window.location.reload();
+              logout().then((res) => {
+                setUser(null);
+              });
             }}
           >
             <TbLogout />
