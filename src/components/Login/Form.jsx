@@ -35,15 +35,19 @@ const Form = () => {
     if (!values.email || !values.password) {
       toast.error("Lütfen tüm alanları doldurun.");
     } else {
-      login(values).then((res) => {
-        toast.success("Giriş Başarılı!");
-        localStorage.setItem("token", res.data.data.token);
-        setUser(res.data.data);
+      login(values)
+        .then((res) => {
+          toast.success("Giriş Başarılı!");
+          localStorage.setItem("token", res.data.data.token);
+          setUser(res.data.data);
 
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 2000);
-      });
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 2000);
+        })
+        .catch(() => {
+          toast.error("Ooops! Giriş yaparken bir sorun oluştu.");
+        });
     }
   };
 
