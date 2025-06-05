@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { TbEye, TbEyeClosed, TbLoader2 } from "react-icons/tb";
+import { useEffect, useState } from "react";
+import { TbEye, TbEyeClosed, TbShield, TbTrash } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 import Menu from "~/components/Menu/Menu";
-import { Alert, AlertTitle } from "~/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,6 +12,15 @@ import {
   BreadcrumbSeparator,
 } from "~/components/ui/breadcrumb";
 import { Button } from "~/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "~/components/ui/dialog";
 import {
   Table,
   TableBody,
@@ -21,16 +31,34 @@ import {
   TableRow,
 } from "~/components/ui/table";
 import Container from "~/containers/Container";
+import { deleteKey, getAllKeys } from "~/services/keyService";
 
 const Keys = () => {
   let pageTitle = "Anahtarlarım";
 
   const [visibleKeys, setVisibleKeys] = useState({});
 
-  const keys = [
-    { id: 1, name: "Ziraat Bankası", password: "12345678" },
-    { id: 2, name: "Garanti Bankası", password: "12345678" },
-  ];
+  const [keys, setKeys] = useState([]);
+  const [keysLoaded, setKeysLoaded] = useState(false);
+
+  const [selectedKey, setSelectedKey] = useState(null);
+
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+
+  useEffect(() => {
+    if (!keysLoaded) {
+      getAllKeys()
+        .then((res) => {
+          setKeys(res.data.data);
+        })
+        .catch((err) => {
+          toast.error("Anahtarlar yüklenirken bir hata oluştu.");
+        })
+        .finally(() => {
+          setKeysLoaded(true);
+        });
+    }
+  }, [keysLoaded]);
 
   return (
     <Container>
@@ -48,11 +76,15 @@ const Keys = () => {
           </BreadcrumbList>
         </Breadcrumb>
         <div className="w-full py-3">
-          <Alert className="mt-3">
-            <TbLoader2 className="animate-spin" />
-            <AlertTitle>Anahtarlar üzerinde çalışıyoruz!</AlertTitle>
+          <Alert variant="default">
+            <TbShield />
+            <AlertTitle>Güvenlik</AlertTitle>
+            <AlertDescription>
+              Burada yer alan anahtarlarınız, sistemimizde uçtan uca
+              şifrelenerek kaydedilmektedir.
+            </AlertDescription>
           </Alert>
-          <Table className="mt-3">
+          <Table className="mt-3 ">
             <TableCaption>Anahtarlar Tablosu</TableCaption>
             <TableHeader>
               <TableRow>
@@ -62,13 +94,13 @@ const Keys = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {keys.map(({ id, name, password }) => (
-                <TableRow key={id}>
-                  <TableCell className="font-medium">{id}</TableCell>
-                  <TableCell>{name}</TableCell>
+              {keys.map((key) => (
+                <TableRow key={key.id}>
+                  <TableCell className="font-medium">{key.id}</TableCell>
+                  <TableCell>{key.name}</TableCell>
                   <TableCell className="text-right">
-                    {visibleKeys[id] ? (
-                      <span>{password}</span>
+                    {visibleKeys[key.id] ? (
+                      <span>{key.key}</span>
                     ) : (
                       <span className="text-neutral-300">******</span>
                     )}
@@ -77,18 +109,69 @@ const Keys = () => {
                       onClick={() =>
                         setVisibleKeys((prev) => ({
                           ...prev,
-                          [id]: !prev[id],
+                          [key.id]: !prev[key.id],
                         }))
                       }
                       variant={"outline"}
                       className="text-xs p-0.5 w-7 h-7 ml-1"
                     >
-                      {visibleKeys[id] ? (
+                      {visibleKeys[key.id] ? (
                         <TbEyeClosed className="rotate-180" />
                       ) : (
                         <TbEye />
                       )}
                     </Button>
+
+                    <Dialog
+                      open={openDeleteDialog}
+                      onOpenChange={setOpenDeleteDialog}
+                    >
+                      <DialogTrigger asChild>
+                        <Button
+                          onClick={() => {
+                            setSelectedKey(key.id);
+                            setOpenDeleteDialog(true);
+                          }}
+                          className="text-xs p-0.5 w-7 h-7  ml-1 bg-white border  hover:bg-red-50 transition-colors duration-200 text-red-500 hover:text-red-600 rounded-md shadow-sm"
+                        >
+                          <TbTrash />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>
+                            Silmek istediğine emin misin?
+                          </DialogTitle>
+                          <DialogDescription>
+                            Bu işlem geri alınamaz. Anahtar silindiğinde, bu
+                            anahtara erişim hakkını kaybedeceksin.
+                          </DialogDescription>
+                          <DialogFooter>
+                            <Button
+                              variant={"destructive"}
+                              onClick={() => {
+                                deleteKey(selectedKey)
+                                  .then((res) => {
+                                    toast.success("Anahtar başarıyla silindi.");
+                                    setKeysLoaded(false);
+                                  })
+                                  .catch(() => {
+                                    toast.error(
+                                      "Anahtar silinirken bir hata oluştu."
+                                    );
+                                  })
+                                  .finally(() => {
+                                    setSelectedKey(null);
+                                    setOpenDeleteDialog(false);
+                                  });
+                              }}
+                            >
+                              Eminim
+                            </Button>
+                          </DialogFooter>
+                        </DialogHeader>
+                      </DialogContent>
+                    </Dialog>
                   </TableCell>
                 </TableRow>
               ))}
