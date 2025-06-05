@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { TbEye, TbEyeClosed, TbLoader2 } from "react-icons/tb";
+import { Link } from "react-router-dom";
 import Menu from "~/components/Menu/Menu";
 import { Alert, AlertTitle } from "~/components/ui/alert";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -39,7 +39,7 @@ const Keys = () => {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Anasayfa</BreadcrumbLink>
+              <Link to="/">Anasayfa</Link>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
